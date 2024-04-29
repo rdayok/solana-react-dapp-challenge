@@ -104,6 +104,8 @@ export default function App() {
     if (solana) {
       try {
 				// ADD DISCONNECT LOGIC HERE
+        const response = await solana.disconnect();
+        setWalletKey(undefined);
       } catch (err) {
           console.log(err);
       }
@@ -115,6 +117,7 @@ export default function App() {
     <div className="App">
       <header className="App-header">
         <h2>Connect to Phantom Wallet</h2>
+        <p>{( walletKey !== undefined)}</p>
       {provider && !walletKey && (
       <button
         style={{
@@ -153,6 +156,7 @@ export default function App() {
             <a href="https://phantom.app/">Phantom Browser extension</a>
           </p>
         )}
+        {walletKey && (<p>Wallet Address is : {walletKey}</p>)}
         </header>
     </div>
   );
